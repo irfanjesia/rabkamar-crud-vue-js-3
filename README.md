@@ -1,4 +1,4 @@
-# crud-vue-3
+# rabkamar-crud-vue-js-3
 
 ## Project setup
 ```
