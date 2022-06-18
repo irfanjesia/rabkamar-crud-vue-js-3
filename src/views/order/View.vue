@@ -80,9 +80,8 @@ export default {
                 this.user = response.data //assign response to state user
                 this.is_admin = response.data.is_admin //get is_admin
             })
-        axios.get('http://rabkamar.test/api/order')
+        axios.get('http://rabkamar.test/api/order', { headers: { 'Authorization': 'Bearer ' + this.token } })
             .then(response => {
-                this.is_admin = response.data.is_admin //get is_admin
                 this.orders = response.data //assign response to orders
             }).catch(error => {
                 console.log(error.response.data)
@@ -99,7 +98,7 @@ export default {
         },
         orderDelete(id) {
             if (confirm('Are you sure you want to delete this order?')) {
-                axios.delete(`http://rabkamar.test/api/order/${id}`)
+                axios.delete(`http://rabkamar.test/api/order/${id}`, { headers: { 'Authorization': 'Bearer ' + this.token } })
                     .then(() => {
                         const index = this.orders.findIndex(order => order.id === id)
                         if (~index) {
@@ -113,7 +112,7 @@ export default {
             }
         }
     },
-    
+
     mounted() {
         if (!this.loggedIn) {
             return this.$router.push({ name: 'order.index' })

@@ -89,9 +89,8 @@ export default {
                 this.user_id = response.data.id //get user_id
                 this.is_admin = response.data.is_admin //get is_admin
             })
-        axios.get(`http://rabkamar.test/api/order/${this.$route.params.id}`)
+        axios.get(`http://rabkamar.test/api/order/${this.$route.params.id}`, { headers: { 'Authorization': 'Bearer ' + this.token } })
             .then(response => {
-                this.is_admin = response.data.is_admin //get is_admin
                 this.order = response.data.data //assign response to order
             }).catch(error => {
                 console.log(error.response.data)
@@ -106,6 +105,8 @@ export default {
                 tanggal_masuk: this.order.tanggal_masuk,
                 tanggal_keluar: this.order.tanggal_keluar,
                 jumlah_orang: this.order.jumlah_orang
+            }, {
+                headers: { 'Authorization': 'Bearer ' + this.token }
             }).then(() => {
                 this.$router.push({
                     name: 'order.view'

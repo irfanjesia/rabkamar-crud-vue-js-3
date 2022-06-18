@@ -100,6 +100,8 @@ export default {
                 tanggal_masuk: this.order.tanggal_masuk,
                 tanggal_keluar: this.order.tanggal_keluar,
                 jumlah_orang: this.order.jumlah_orang
+            }, {
+                headers: { 'Authorization': 'Bearer ' + this.token }
             }).then(() => {
                 this.$router.push({
                     name: 'order.view'
